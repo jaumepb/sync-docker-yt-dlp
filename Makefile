@@ -13,13 +13,13 @@ ifndef DOCKERHUB_PASSWORD
 	$(error DOCKERHUB_PASSWORD is undefined)
 endif
 
-check-quay-env:
-ifndef QUAY_USERNAME
-	$(error QUAY_USERNAME is undefined)
-endif
-ifndef QUAY_PASSWORD
-	$(error QUAY_PASSWORD is undefined)
-endif
+#check-quay-env:
+#ifndef QUAY_USERNAME
+#	$(error QUAY_USERNAME is undefined)
+#endif
+#ifndef QUAY_PASSWORD
+#	$(error QUAY_PASSWORD is undefined)
+#endif
 
 docker-build:
 	docker build -t $(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE) --build-arg ALPINE_VERSION=$(ALPINE_VERSION) .
@@ -45,14 +45,14 @@ ifdef CIRCLE_TAG
 	docker push $(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):${CIRCLE_TAG}
 endif
 
-quay-push: check-quay-env
-	docker login -u "${QUAY_USERNAME}" -p "${QUAY_PASSWORD}" quay.io
-	docker tag $(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):latest quay.io/$(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):latest
-	docker push quay.io/$(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):latest
-ifdef CIRCLE_TAG
-	docker tag $(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):latest quay.io/$(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):${CIRCLE_TAG}
-	docker push quay.io/$(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):${CIRCLE_TAG}
-endif
+#quay-push: check-quay-env
+#	docker login -u "${QUAY_USERNAME}" -p "${QUAY_PASSWORD}" quay.io
+#	docker tag $(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):latest quay.io/$(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):latest
+#	docker push quay.io/$(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):latest
+#ifdef CIRCLE_TAG
+#	docker tag $(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):latest quay.io/$(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):${CIRCLE_TAG}
+#	docker push quay.io/$(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):${CIRCLE_TAG}
+#endif
 
 #.PHONY: all check-dockerhub-env check-quay-env docker-build docker-test docker-save dockerhub-push quay-push
 # Quito la parte de subir a quay.io

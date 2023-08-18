@@ -50,20 +50,20 @@ jobs:
       - run:
           name: Push Docker image to Docker Hub
           command: make dockerhub-push
-  publish-quay:
-    executor: docker-build-buster
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace
-      - checkout
-      - setup_remote_docker:
-          version: 18.09.3
-      - run:
-          name: Load archived Docker image
-          command: DOCKER_IMAGE_FILENAME=/tmp/workspace/image.tar make docker-load
-      - run:
-          name: Push Docker image to Quay.io
-          command: make quay-push
+#  publish-quay:
+#    executor: docker-build-buster
+#    steps:
+#      - attach_workspace:
+#          at: /tmp/workspace
+#      - checkout
+#      - setup_remote_docker:
+#          version: 18.09.3
+#      - run:
+#          name: Load archived Docker image
+#          command: DOCKER_IMAGE_FILENAME=/tmp/workspace/image.tar make docker-load
+#      - run:
+#          name: Push Docker image to Quay.io
+#          command: make quay-push
 
 workflows:
   version: 2
@@ -76,9 +76,9 @@ workflows:
       - publish-dockerhub:
           requires:
             - test
-      - publish-quay:
-          requires:
-            - test
+#      - publish-quay:
+#          requires:
+#            - test
   nightly-build-deploy:
     triggers:
       - schedule:
@@ -95,6 +95,6 @@ workflows:
       - publish-dockerhub:
           requires:
             - test
-      - publish-quay:
-          requires:
-            - test
+#      - publish-quay:
+#          requires:
+#            - test
