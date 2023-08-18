@@ -54,5 +54,7 @@ ifdef CIRCLE_TAG
 	docker push quay.io/$(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):${CIRCLE_TAG}
 endif
 
-.PHONY: all check-dockerhub-env check-quay-env docker-build docker-test docker-save dockerhub-push quay-push
+#.PHONY: all check-dockerhub-env check-quay-env docker-build docker-test docker-save dockerhub-push quay-push
+# Quito la parte de subir a quay.io
+.PHONY: all check-dockerhub-env check-quay-env docker-build docker-test docker-save dockerhub-push
 # vim:ft=make
