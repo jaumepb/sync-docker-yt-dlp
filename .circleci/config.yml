@@ -80,7 +80,6 @@ jobs:
     executor:
       name: docker-push-files-2-dockerhub
       file: << parameters.file >>
-      name: default
     parameters:
       file:
         default: README.md
