@@ -38,7 +38,7 @@ ifneq ($(wildcard $(DOCKER_IMAGE_FILENAME)),)
 endif
 
 dockerhub-push: check-dockerhub-env
-	echo "${DOCKERHUB_PASSWORD}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+	docker login -u "${DOCKERHUB_USERNAME}" -p "${DOCKERHUB_PASSWORD}"
 	docker push $(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):latest
 ifdef CIRCLE_TAG
 	docker tag $(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):latest $(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):${CIRCLE_TAG}
@@ -46,7 +46,7 @@ ifdef CIRCLE_TAG
 endif
 
 quay-push: check-quay-env
-	echo "${QUAY_PASSWORD}" | docker login -u "${QUAY_USERNAME}" --password-stdin quay.io
+	docker login -u "${QUAY_USERNAME}" -p "${QUAY_PASSWORD}" quay.io
 	docker tag $(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):latest quay.io/$(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):latest
 	docker push quay.io/$(DOCKER_ORGANIZATION)/$(DOCKER_IMAGE):latest
 ifdef CIRCLE_TAG
@@ -56,5 +56,5 @@ endif
 
 #.PHONY: all check-dockerhub-env check-quay-env docker-build docker-test docker-save dockerhub-push quay-push
 # Quito la parte de subir a quay.io
-.PHONY: all check-dockerhub-env check-quay-env docker-build docker-test docker-save dockerhub-push
+.PHONY: all check-dockerhub-env docker-build docker-test docker-save dockerhub-push
 # vim:ft=make
