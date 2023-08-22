@@ -28,6 +28,7 @@ workflows:
       - docker/publish:
           readme: README.md
           #path: path/to/Docker/build/context
+          #deploy: false
           image: $DOCKER_LOGIN/$DST_REPO
           tag: latest
   nightly-build-deploy:
