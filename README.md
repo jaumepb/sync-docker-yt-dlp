@@ -1,5 +1,8 @@
 # docker-yt-dlp
+
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/jaumepb/sync-docker-yt-dlp/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/jaumepb/sync-docker-yt-dlp/tree/main)
+
+[![CircleCI](https://dl.circleci.com/insights-snapshot/gh/jaumepb/sync-docker-yt-dlp/main/build-deploy/badge.svg?window=30d)](https://app.circleci.com/insights/github/jaumepb/sync-docker-yt-dlp/workflows/build-deploy/overview?branch=main&reporting-window=last-30-days&insights-snapshot=true)
 
 This image is automatically build with the latest version of **yt-dlp** (https://github.com/yt-dlp/yt-dlp)
 
