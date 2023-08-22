@@ -10,6 +10,7 @@ jobs:
       - docker/check
       - docker/build:
           image: $DOCKER_LOGIN/$DST_REPO
+          tag: latest
       - docker/push:
           digest-path: /tmp/digest.txt
           image: $DOCKER_LOGIN/$DST_REPO
