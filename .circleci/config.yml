@@ -5,7 +5,7 @@ workflows:
   build-and-publish-docker-image:
     jobs:
       - docker/publish:
-          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+          image: $DOCKER_LOGIN/$DOCKER_LOGIN
           update-description: true
           
 
