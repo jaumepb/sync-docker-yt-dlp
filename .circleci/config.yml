@@ -7,8 +7,4 @@ workflows:
       - docker/publish:
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
           update-description: true
-          auth: # Autenticación con Docker Hub
-            username: $CIRCLE_PROJECT_USERNAME
-            password: # La contraseña se maneja mediante una variable de entorno cifrada
-              secure: $PARAM_DOCKER_PASSWORD
 
