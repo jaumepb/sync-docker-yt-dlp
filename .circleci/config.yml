@@ -11,10 +11,6 @@ jobs:
       - docker/build:
           image: $DOCKER_LOGIN/$DST_REPO
           tag: latest
-      - docker/publish:
-          image: $DOCKER_LOGIN/$DST_REPO
-          deploy: false
-          tag: latest
       - docker/push:
           digest-path: /tmp/digest.txt
           image: $DOCKER_LOGIN/$DST_REPO
@@ -22,10 +18,19 @@ jobs:
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
+
 workflows:
-  build-and-push-wf:
+  build-and-push:
     jobs:
       - build-and-push
+  build-and-publish-docker-image:
+    jobs:
+      - docker/publish:
+          readme: README.md
+          #path: path/to/Docker/build/context
+          deploy: false
+          image: $DOCKER_LOGIN/$DST_REPO
+          tag: latest
   nightly-build-deploy:
     triggers:
       - schedule:
