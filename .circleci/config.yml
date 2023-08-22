@@ -5,7 +5,7 @@ workflows:
   build-and-publish-docker-image:
     jobs:
       - docker/publish:
-          image: $DOCKER_LOGIN/$DOCKER_LOGIN
+          image: $DOCKER_LOGIN/$DST_REPO
           update-description: true
           
 
