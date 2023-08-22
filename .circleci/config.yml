@@ -13,11 +13,12 @@ jobs:
           tag: latest
       - docker/publish:
           image: $DOCKER_LOGIN/$DST_REPO
-          update-description: true
-#      - docker/push:
-#          digest-path: /tmp/digest.txt
-#          image: $DOCKER_LOGIN/$DST_REPO
-#          tag: latest
+          deploy: false
+          tag: latest
+      - docker/push:
+          digest-path: /tmp/digest.txt
+          image: $DOCKER_LOGIN/$DST_REPO
+          tag: latest
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
