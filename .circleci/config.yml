@@ -2,7 +2,7 @@ version: '2.1'
 orbs:
   docker: circleci/docker@2.2.0
 workflows:
-  build-docker-image-only:
+  build-and-publish-docker-image:
     jobs:
       - docker/publish:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
